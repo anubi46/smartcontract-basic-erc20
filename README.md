@@ -1,1 +1,1 @@
-# smartcontract-basic-erc20
+# Smartcontract-basic-ERC20
