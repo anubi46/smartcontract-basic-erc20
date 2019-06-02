@@ -132,15 +132,11 @@ contract ERC20 is ERC20Basic {
 
 /**
  * @title Standard ERC20 token
- *
- * @dev Implementation of the basic standard token.
- * @dev https://github.com/ethereum/EIPs/issues/20
- * @dev Based on code by FirstBlood: https://github.com/Firstbloodio/token/blob/master/smart_contract/FirstBloodToken.sol
+ 
  */
 contract StandardToken is ERC20, BasicToken {
 
   mapping (address => mapping (address => uint256)) internal allowed;
-
 
   /**
    * @dev Transfer tokens from one address to another
@@ -252,8 +248,6 @@ contract StandardToken is ERC20, BasicToken {
 
 }
 
-
-
 /**
  * @title Ownable
  * @dev The Ownable contract has an owner address, and provides basic authorization control
@@ -262,13 +256,11 @@ contract StandardToken is ERC20, BasicToken {
 contract Ownable {
   address public owner;
 
-
   event OwnershipRenounced(address indexed previousOwner);
   event OwnershipTransferred(
     address indexed previousOwner,
     address indexed newOwner
   );
-
 
   /**
    * @dev The Ownable constructor sets the original `owner` of the contract to the sender
@@ -313,7 +305,6 @@ contract Ownable {
   }
 }
 
-
 /**
  * @title Mintable token
  * @dev Simple ERC20 Token example, with mintable token creation
@@ -325,7 +316,6 @@ contract MintableToken is StandardToken, Ownable {
   event MintFinished();
 
   bool public mintingFinished = false;
-
 
   modifier canMint() {
     require(!mintingFinished);
@@ -369,7 +359,6 @@ contract MintableToken is StandardToken, Ownable {
     return true;
   }
 }
-
 
 contract FreezableToken is StandardToken {
     // freezing chains
@@ -539,7 +528,6 @@ contract FreezableToken is StandardToken {
     }
 }
 
-
 /**
  * @title Burnable Token
  * @dev Token that can be irreversibly burned (destroyed).
@@ -568,8 +556,6 @@ contract BurnableToken is BasicToken {
   }
 }
 
-
-
 /**
  * @title Pausable
  * @dev Base contract which allows children to implement an emergency stop mechanism.
@@ -579,7 +565,6 @@ contract Pausable is Ownable {
   event Unpause();
 
   bool public paused = false;
-
 
   /**
    * @dev Modifier to make a function callable only when the contract is not paused.
@@ -640,8 +625,6 @@ contract FreezableMintableToken is FreezableToken, MintableToken {
     }
 }
 
-
-
 contract Consts {
     uint public constant TOKEN_DECIMALS = 18;
     uint8 public constant TOKEN_DECIMALS_UINT8 = 18;
@@ -654,9 +637,6 @@ contract Consts {
     
     bool public constant CONTINUE_MINTING = true;
 }
-
-
-
 
 contract MainToken is Consts, FreezableMintableToken, BurnableToken, Pausable
     
@@ -693,7 +673,6 @@ contract MainToken is Consts, FreezableMintableToken, BurnableToken, Pausable
         return super.transfer(_to, _value);
     }
 
-    
     function init() private {
         require(!initialized);
         initialized = true;
@@ -702,7 +681,6 @@ contract MainToken is Consts, FreezableMintableToken, BurnableToken, Pausable
             pause();
         }
 
-        
         address[1] memory addresses = [address(Your Address)];
         uint[1] memory amounts = [uint()];
         uint64[1] memory freezes = [uint64(0)];
@@ -715,7 +693,6 @@ contract MainToken is Consts, FreezableMintableToken, BurnableToken, Pausable
             }
         }
         
-
         if (!CONTINUE_MINTING) {
             finishMinting();
         }
