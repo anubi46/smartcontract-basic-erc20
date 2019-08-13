@@ -486,7 +486,8 @@ contract FreezableToken is StandardToken {
     }
 
     function toKey(address _addr, uint _release) internal pure returns (bytes32 result) {
-        // WISH masc to increase entropy
+        // 
+        masc to increase entropy
         result = 0x5749534800000000000000000000000000000000000000000000000000000000;
         assembly {
             result := or(result, mul(_addr, 0x10000000000000000))
